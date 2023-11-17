@@ -255,7 +255,7 @@ public class WebUI {
     public static WebElement highLightElement(By by) {
         // Tô màu border ngoài chính element chỉ định - màu đỏ (có thể đổi màu khác)
         if (DriverManager.getDriver() instanceof JavascriptExecutor) {
-            ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].style.border='5px dotted blue'", getWebElement(by));
+            ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].style.border='3px solid red'", getWebElement(by));
             sleep(1);
         }
         return getWebElement(by);
