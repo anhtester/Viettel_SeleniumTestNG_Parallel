@@ -2,6 +2,7 @@ package com.anhtester.Bai26_ParallelExecutionPOM.testcases;
 
 import com.anhtester.Bai26_ParallelExecutionPOM.pages.LoginPage;
 import com.anhtester.common.BaseTest;
+import com.anhtester.helpers.ExcelHelper;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
@@ -12,7 +13,14 @@ public class LoginTest extends BaseTest {
     public void testLoginCRM_Success() {
         System.out.println("=====testLoginCRM_Success=====");
         loginPage = new LoginPage();
-        loginPage.loginCRM("admin@example.com", "123456");
+
+        ExcelHelper excelHelper = new ExcelHelper();
+        excelHelper.setExcelFile("src/test/resources/testdata/LoginData.xlsx", "Sheet1");
+
+        loginPage.loginCRM(
+                excelHelper.getCellData("email", 1),
+                excelHelper.getCellData("password", 1)
+        );
         loginPage.verifyLoginSuccess();
     }
 
@@ -20,7 +28,14 @@ public class LoginTest extends BaseTest {
     public void testLoginCRM_EmailInvalid() {
         System.out.println("=====testLoginCRM_EmailInvalid=====");
         loginPage = new LoginPage();
-        loginPage.loginCRM("admin123@example.com", "123456");
+
+        ExcelHelper excelHelper = new ExcelHelper();
+        excelHelper.setExcelFile("src/test/resources/testdata/LoginData.xlsx", "Sheet1");
+
+        loginPage.loginCRM(
+                excelHelper.getCellData("email", 2),
+                excelHelper.getCellData("password", 2)
+        );
         loginPage.verifyLoginFail();
     }
 
