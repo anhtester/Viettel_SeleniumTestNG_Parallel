@@ -1,6 +1,6 @@
-package com.anhtester.Bai26_ParallelExecutionPOM.testcases;
+package com.anhtester.Bai31_TestListener.testcases;
 
-import com.anhtester.Bai26_ParallelExecutionPOM.pages.LoginPage;
+import com.anhtester.Bai31_TestListener.pages.LoginPage;
 import com.anhtester.common.BaseTest;
 import com.anhtester.helpers.ExcelHelper;
 import org.testng.annotations.Test;
