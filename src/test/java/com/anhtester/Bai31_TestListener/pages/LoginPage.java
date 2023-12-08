@@ -2,6 +2,7 @@ package com.anhtester.Bai31_TestListener.pages;
 
 import com.anhtester.drivers.DriverManager;
 import com.anhtester.keywords.WebUI;
+import com.anhtester.utils.LogUtils;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
@@ -43,18 +44,18 @@ public class LoginPage {
     }
 
     public void verifyLoginSuccess() {
-        System.out.println("Verify login success");
+        LogUtils.info("Verify login success");
         Assert.assertTrue(DriverManager.getDriver().findElement(menuDashboard).isDisplayed(), "Menu Dashboard not displayed.");
     }
 
     public void verifyLoginFail() {
-        System.out.println("Verify login fail");
+        LogUtils.info("Verify login fail");
         Assert.assertTrue(DriverManager.getDriver().findElement(errorMessage).isDisplayed(), "Error Message not displayed.");
-        Assert.assertEquals(WebUI.getElementText(errorMessage), "Invalid email or password", "Content of Error Message not match.");
+        Assert.assertEquals(WebUI.getElementText(errorMessage), "Invalid email or password 123", "Content of Error Message not match.");
     }
 
     public void verifyRedirectLoginPage() {
-        System.out.println("Verify redirect to Login page");
+        LogUtils.info("Verify redirect to Login page");
         Assert.assertTrue(DriverManager.getDriver().findElement(headerLoginPage).isDisplayed(), "Header of Login page not displayed.");
         Assert.assertEquals(WebUI.getElementText(headerLoginPage), "Login", "Content of header for Login page not match.");
     }
