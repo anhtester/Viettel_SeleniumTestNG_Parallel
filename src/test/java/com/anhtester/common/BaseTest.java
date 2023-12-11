@@ -24,7 +24,7 @@ public class BaseTest {
         PropertiesHelper.loadAllFiles();
         WebDriver driver = setBrowser(PropertiesHelper.getValue("browser"));
 
-        DriverManager.setDriver(driver); //Gán giá trị driver vào trong ThreadLocal
+        DriverManager.setDriver(driver);
     }
 
     public WebDriver setBrowser(String browserName) {
@@ -40,8 +40,8 @@ public class BaseTest {
             driver = new FirefoxDriver();
         }
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
         driver.manage().window().maximize();
 
         return driver;

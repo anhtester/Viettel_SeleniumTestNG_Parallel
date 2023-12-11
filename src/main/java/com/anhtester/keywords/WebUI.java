@@ -1,7 +1,9 @@
 package com.anhtester.keywords;
 
 import com.anhtester.drivers.DriverManager;
+import com.anhtester.reports.ExtentTestManager;
 import com.anhtester.utils.LogUtils;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -56,6 +58,7 @@ public class WebUI {
         DriverManager.getDriver().get(url);
         sleep(STEP_TIME);
         LogUtils.info("Open URL: " + url);
+        ExtentTestManager.logMessage(Status.INFO, "Open URL: " + url);
     }
 
     public static void clickElement(String by) {
@@ -63,6 +66,7 @@ public class WebUI {
         sleep(STEP_TIME);
         DriverManager.getDriver().findElement(By.xpath(by)).click();
         LogUtils.info("Click element " + by);
+        ExtentTestManager.logMessage(Status.INFO, "Click on element " + by);
     }
 
     public static void setText(String by, String value) {
@@ -70,6 +74,7 @@ public class WebUI {
         sleep(STEP_TIME);
         DriverManager.getDriver().findElement(By.xpath(by)).sendKeys(value);
         LogUtils.info("Set text " + value + " on element " + by);
+        ExtentTestManager.logMessage(Status.INFO, "Set text " + value + " on element " + by);
     }
 
     public static void clickElement(By by) {
@@ -78,6 +83,7 @@ public class WebUI {
         sleep(STEP_TIME);
         DriverManager.getDriver().findElement(by).click();
         LogUtils.info("Click element " + by);
+        ExtentTestManager.logMessage(Status.INFO, "Click on element " + by);
     }
 
     public static void clickElement(By by, int timeout) {
@@ -86,6 +92,7 @@ public class WebUI {
         sleep(STEP_TIME);
         DriverManager.getDriver().findElement(by).click();
         LogUtils.info("Click element " + by);
+        ExtentTestManager.logMessage(Status.INFO, "Click on element " + by);
     }
 
     public static void setText(By by, String value) {
@@ -94,6 +101,7 @@ public class WebUI {
         sleep(STEP_TIME);
         DriverManager.getDriver().findElement(by).sendKeys(value);
         LogUtils.info("Set text " + value + " on element " + by);
+        ExtentTestManager.logMessage(Status.INFO, "Set text " + value + " on element " + by);
     }
 
     public static void setText(By by, String value, int timeOut) {
@@ -102,6 +110,7 @@ public class WebUI {
         sleep(STEP_TIME);
         DriverManager.getDriver().findElement(by).sendKeys(value);
         LogUtils.info("Set text " + value + " on element " + by);
+        ExtentTestManager.logMessage(Status.INFO, "Set text " + value + " on element " + by);
     }
 
     public static String getElementText(By by) {
@@ -109,6 +118,8 @@ public class WebUI {
         sleep(STEP_TIME);
         String text = DriverManager.getDriver().findElement(by).getText();
         LogUtils.info("Get text of element " + by + " ==> " + text);
+        ExtentTestManager.logMessage(Status.INFO, "Get text of element " + by);
+        ExtentTestManager.logMessage(Status.INFO, "==> Text: " + getWebElement(by).getText());
         return text;
     }
 
