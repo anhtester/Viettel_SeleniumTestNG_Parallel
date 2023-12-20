@@ -6,8 +6,11 @@ import com.anhtester.helpers.PropertiesHelper;
 import com.anhtester.listeners.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -30,14 +33,27 @@ public class BaseTest {
     public WebDriver setBrowser(String browserName) {
         WebDriver driver = null;
 
+
         if (browserName.trim().toLowerCase().equals("chrome")) {
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            if (PropertiesHelper.getValue("HEADLESS").equals("true")) {
+                options.addArguments("--headless");
+            }
+            driver = new ChromeDriver(options);
         }
         if (browserName.trim().toLowerCase().equals("edge")) {
-            driver = new EdgeDriver();
+            EdgeOptions options = new EdgeOptions();
+            if (PropertiesHelper.getValue("HEADLESS").equals("true")) {
+                options.addArguments("--headless");
+            }
+            driver = new EdgeDriver(options);
         }
         if (browserName.trim().toLowerCase().equals("firefox")) {
-            driver = new FirefoxDriver();
+            FirefoxOptions options = new FirefoxOptions();
+            if (PropertiesHelper.getValue("HEADLESS").equals("true")) {
+                options.addArguments("--headless");
+            }
+            driver = new FirefoxDriver(options);
         }
 
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

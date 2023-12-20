@@ -35,8 +35,11 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        LogUtils.info("*********" + result.getName()+"*********");
-        CaptureHelper.startRecord(result.getName());
+        LogUtils.info("*********" + result.getName() + "*********");
+
+        if (PropertiesHelper.getValue("VIDEO_RECORD").equals("true")) {
+            CaptureHelper.startRecord(result.getName());
+        }
 
         //Bắt đầu ghi 1 TCs mới vào Extent Report
         ExtentTestManager.saveToReport(getTestName(result), getTestDescription(result));
@@ -45,10 +48,15 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         LogUtils.info("==> " + result.getName() + " is successfully.");
-        //CaptureHelper.takeScreenshot(arg0.getName());
 
-        WebUI.sleep(0.5);
-        CaptureHelper.stopRecord();
+        if (PropertiesHelper.getValue("SCREENSHOT_PASS").equals("true")) {
+            CaptureHelper.takeScreenshot(result.getName());
+        }
+
+        if (PropertiesHelper.getValue("VIDEO_RECORD").equals("true")) {
+            WebUI.sleep(0.5);
+            CaptureHelper.stopRecord();
+        }
 
         //Extent Report
         ExtentTestManager.logMessage(Status.PASS, result.getName() + " is passed.");
@@ -57,10 +65,15 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         LogUtils.error("==> " + result.getName() + " is FAIL.");
-        CaptureHelper.takeScreenshot(result.getName());
 
-        WebUI.sleep(0.5);
-        CaptureHelper.stopRecord();
+        if (PropertiesHelper.getValue("SCREENSHOT_FAIL").equals("true")) {
+            CaptureHelper.takeScreenshot(result.getName());
+        }
+
+        if (PropertiesHelper.getValue("VIDEO_RECORD").equals("true")) {
+            WebUI.sleep(0.5);
+            CaptureHelper.stopRecord();
+        }
 
         //Extent Report
         ExtentTestManager.addScreenShot(result.getName());
@@ -74,10 +87,12 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        LogUtils.warn("*********" + result.getName()+" is SKIPPED *********");
+        LogUtils.warn("*********" + result.getName() + " is SKIPPED *********");
 
-        WebUI.sleep(0.5);
-        CaptureHelper.stopRecord();
+        if (PropertiesHelper.getValue("VIDEO_RECORD").equals("true")) {
+            WebUI.sleep(0.5);
+            CaptureHelper.stopRecord();
+        }
 
         //Extent Report
         ExtentTestManager.logMessage(Status.SKIP, result.getThrowable().toString());
