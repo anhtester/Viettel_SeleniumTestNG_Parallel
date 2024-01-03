@@ -18,7 +18,7 @@ public class Handle_Table_CustomerCRM extends BaseTest {
         loginPage = new LoginPage();
         dashboardPage = loginPage.loginCRM(ConfigData.EMAIL, ConfigData.PASSWORD);
         customerPage = dashboardPage.clickMenuCustomers();
-        customerPage.searchCustomer2("Viettel A1"); //Tra ra 25 records /page
+        customerPage.searchCustomerOnTable("Viettel A1"); //Tra ra 25 records /page
         //customerPage.checkPageTotal(5);
         customerPage.checkSearchTableByColumn(3, "Viettel A1"); //So sanh contains
     }

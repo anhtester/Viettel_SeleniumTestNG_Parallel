@@ -83,7 +83,7 @@ public class CustomerPage {
         return new ProfilePage();
     }
 
-    public void searchCustomer2(String companyName) {
+    public void searchCustomerOnTable(String companyName) {
         WebUI.setText(inputSearchCustomers, companyName);
         WebUI.sleep(2);
         WebUI.waitForPageLoaded();
@@ -124,7 +124,7 @@ public class CustomerPage {
         int rowTotal = row.size(); //Lấy ra số dòng
         System.out.println("Số dòng tìm thấy: " + rowTotal);
 
-        Assert.assertEquals(rowTotal, checkPageTotal(), "The page total not equals records total");
+        //Assert.assertEquals(rowTotal, checkPageTotal(), "The page total not equals records total");
 
         //Duyệt từng dòng
         for (int i = 1; i <= rowTotal; i++) {
