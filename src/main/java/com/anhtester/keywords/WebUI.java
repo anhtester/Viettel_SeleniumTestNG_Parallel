@@ -148,6 +148,19 @@ public class WebUI {
         LogUtils.info("Set key: " + key.name() + " on element");
     }
 
+    public static boolean checkElementDisplayed(By by) {
+        waitForElementVisible(by);
+        boolean check = getWebElement(by).isDisplayed();
+        return check;
+    }
+
+    public static String getElementAttribute(By by, String attributeName) {
+        waitForElementVisible(by);
+        String value = getWebElement(by).getAttribute(attributeName);
+        LogUtils.info("Get attribute value of element " + by + " is: " + value);
+        return value;
+    }
+
     public static void scrollToElement(By element) {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("arguments[0].scrollIntoView(true);", getWebElement(element));
@@ -280,8 +293,8 @@ public class WebUI {
     public static WebElement highLightElement(By by) {
         // Tô màu border ngoài chính element chỉ định - màu đỏ (có thể đổi màu khác)
         if (DriverManager.getDriver() instanceof JavascriptExecutor) {
-            ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].style.border='3px solid red'", getWebElement(by));
-            sleep(1);
+            ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].style.border='2px solid red'", getWebElement(by));
+            sleep(0.5);
         }
         return getWebElement(by);
     }

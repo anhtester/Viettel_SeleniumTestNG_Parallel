@@ -15,6 +15,8 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 @Listeners(TestListener.class)
 public class BaseTest {
@@ -22,10 +24,10 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"browser"})
     public void createBrowser(@Optional("chrome") String browserName) {
-        //WebDriver driver = setBrowser(browserName);
+        WebDriver driver = setBrowser(browserName);
 
-        PropertiesHelper.loadAllFiles();
-        WebDriver driver = setBrowser(PropertiesHelper.getValue("browser"));
+        //PropertiesHelper.loadAllFiles();
+        //WebDriver driver = setBrowser(PropertiesHelper.getValue("browser"));
 
         DriverManager.setDriver(driver);
     }
@@ -33,18 +35,39 @@ public class BaseTest {
     public WebDriver setBrowser(String browserName) {
         WebDriver driver = null;
 
-
         if (browserName.trim().toLowerCase().equals("chrome")) {
             ChromeOptions options = new ChromeOptions();
+            Map<String, Object> prefs = new HashMap<String, Object>();
+            prefs.put("profile.default_content_setting_values.notifications", 2);
+            prefs.put("profile.password_manager_enabled", false);
+            prefs.put("autofill.profile_enabled", false);
+            options.setExperimentalOption("prefs", prefs);
+
+            options.addArguments("--disable-extensions");
+            options.addArguments("--disable-infobars");
+            options.addArguments("--disable-notifications");
+
             if (PropertiesHelper.getValue("HEADLESS").equals("true")) {
-                options.addArguments("--headless");
+                options.addArguments("--headless=new");
+                options.addArguments("window-size=1800,900");
             }
             driver = new ChromeDriver(options);
         }
         if (browserName.trim().toLowerCase().equals("edge")) {
             EdgeOptions options = new EdgeOptions();
+            Map<String, Object> prefs = new HashMap<String, Object>();
+            prefs.put("profile.default_content_setting_values.notifications", 2);
+            prefs.put("profile.password_manager_enabled", false);
+            prefs.put("autofill.profile_enabled", false);
+            options.setExperimentalOption("prefs", prefs);
+
+            options.addArguments("--disable-extensions");
+            options.addArguments("--disable-infobars");
+            options.addArguments("--disable-notifications");
+
             if (PropertiesHelper.getValue("HEADLESS").equals("true")) {
-                options.addArguments("--headless");
+                options.addArguments("--headless=new");
+                options.addArguments("window-size=1800,900");
             }
             driver = new EdgeDriver(options);
         }
@@ -52,11 +75,11 @@ public class BaseTest {
             FirefoxOptions options = new FirefoxOptions();
             if (PropertiesHelper.getValue("HEADLESS").equals("true")) {
                 options.addArguments("--headless");
+                options.addArguments("window-size=1800,900");
             }
             driver = new FirefoxDriver(options);
         }
 
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
         driver.manage().window().maximize();
 
@@ -64,7 +87,7 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void closeBrowser(ITestResult iTestResult) {
+    public void closeBrowser() {
         DriverManager.quit();
     }
 
