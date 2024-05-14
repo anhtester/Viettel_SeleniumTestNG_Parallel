@@ -32,8 +32,8 @@ public class DemoDataProvider {
 
     @Test(dataProvider = "dataLoginFromExcelMultipleRow", dataProviderClass = DataProviderFactory.class)
     public void testLoginFromExcelFileMultipleRow(Hashtable<String, String> data) {
-        System.out.println("EMAIL: " + data.get("email")); //email là tên cột trong file excel (dòng đầu)
-        System.out.println("PASSWORD: " + data.get("password")); //password là tên cột trong file excel (dòng đầu)
+        System.out.println("EMAIL: " + data.get("EMAIL")); //email là tên cột trong file excel (dòng đầu)
+        System.out.println("PASSWORD: " + data.get("PASSWORD")); //password là tên cột trong file excel (dòng đầu)
     }
 
 }

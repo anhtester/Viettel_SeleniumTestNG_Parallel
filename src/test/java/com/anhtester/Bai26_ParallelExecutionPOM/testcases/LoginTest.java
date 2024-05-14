@@ -18,8 +18,8 @@ public class LoginTest extends BaseTest {
         excelHelper.setExcelFile("src/test/resources/testdata/LoginData.xlsx", "LoginData");
 
         loginPage.loginCRM(
-                excelHelper.getCellData("email", 1),
-                excelHelper.getCellData("password", 1)
+                excelHelper.getCellData("EMAIL", 1),
+                excelHelper.getCellData("PASSWORD", 1)
         );
         loginPage.verifyLoginSuccess();
     }
@@ -33,8 +33,8 @@ public class LoginTest extends BaseTest {
         excelHelper.setExcelFile("src/test/resources/testdata/LoginData.xlsx", "LoginData");
 
         loginPage.loginCRM(
-                excelHelper.getCellData("email", 2),
-                excelHelper.getCellData("password", 2)
+                excelHelper.getCellData("EMAIL", 2),
+                excelHelper.getCellData("PASSWORD", 2)
         );
         loginPage.verifyLoginFail();
     }

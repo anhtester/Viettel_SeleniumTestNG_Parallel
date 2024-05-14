@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Regression Test" verbose="1">
+    <test name="Login Test CRM" parallel="methods">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.anhtester.Bai31_TestListener.testcases.LoginTest"/>
+        </classes>
+    </test>
+</suite>

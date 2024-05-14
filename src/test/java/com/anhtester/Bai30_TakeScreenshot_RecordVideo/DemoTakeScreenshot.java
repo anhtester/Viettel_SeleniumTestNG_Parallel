@@ -2,17 +2,9 @@ package com.anhtester.Bai30_TakeScreenshot_RecordVideo;
 
 import com.anhtester.Bai26_ParallelExecutionPOM.pages.LoginPage;
 import com.anhtester.common.BaseTest;
-import com.anhtester.drivers.DriverManager;
 import com.anhtester.helpers.CaptureHelper;
 import com.anhtester.helpers.ExcelHelper;
-import com.anhtester.keywords.WebUI;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.Test;
-
-import java.io.File;
-import java.io.IOException;
 
 public class DemoTakeScreenshot extends BaseTest {
 
@@ -29,8 +21,8 @@ public class DemoTakeScreenshot extends BaseTest {
         excelHelper.setExcelFile("src/test/resources/testdata/LoginData.xlsx", "LoginSuccess");
 
         loginPage.loginCRM(
-                excelHelper.getCellData("email", 1),
-                excelHelper.getCellData("password", 1)
+                excelHelper.getCellData("EMAIL", 1),
+                excelHelper.getCellData("PASSWORD", 1)
         );
 
         //CaptureHelper.takeScreenshot("testLoginCRM_Success");
@@ -52,8 +44,8 @@ public class DemoTakeScreenshot extends BaseTest {
         excelHelper.setExcelFile("src/test/resources/testdata/LoginData.xlsx", "LoginSuccess");
 
         loginPage.loginCRM(
-                excelHelper.getCellData("email", 2),
-                excelHelper.getCellData("password", 2)
+                excelHelper.getCellData("EMAIL", 2),
+                excelHelper.getCellData("PASSWORD", 2)
         );
 
         loginPage.verifyLoginSuccess();

@@ -12,9 +12,9 @@ public class DemoReadExcelFile {
         excelHelper.setExcelFile("src/test/resources/testdata/LoginData.xlsx", "Sheet1");
 
         //Gọi hàm getCellData để đọc data theo từng ô
-        System.out.println(excelHelper.getCellData("email", 1));
-        System.out.println(excelHelper.getCellData("email", 2));
-        System.out.println(excelHelper.getCellData("password", 1));
+        System.out.println(excelHelper.getCellData("EMAIL", 1));
+        System.out.println(excelHelper.getCellData("EMAIL", 2));
+        System.out.println(excelHelper.getCellData("PASSWORD", 1));
         System.out.println(excelHelper.getCellData("role", 1));
         System.out.println(excelHelper.getCellData(0, 1));
     }
@@ -26,8 +26,8 @@ public class DemoReadExcelFile {
         excelHelper.setExcelFile("src/test/resources/testdata/LoginData.xlsx", "Sheet2");
 
         //Gọi hàm setCellData để ghi data vào từng ô chỉ định theo cột và dòng
-        excelHelper.setCellData("anhtester@email.com", "email", 1);
-        excelHelper.setCellData("123456", "password", 1);
+        excelHelper.setCellData("anhtester@email.com", "EMAIL", 1);
+        excelHelper.setCellData("123456", "PASSWORD", 1);
         excelHelper.setCellData("project manager", "role", 1);
     }
 

@@ -2,7 +2,7 @@
 
 <suite name="Regression Test" verbose="1" parallel="tests">
     <test name="Login Test CRM CHROME" parallel="methods">
-        <parameter name="browser" value="chrome"></parameter>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.anhtester.Bai26_ParallelExecutionPOM.testcases.LoginTest">
                 <methods>
@@ -12,7 +12,7 @@
         </classes>
     </test>
     <test name="Login Test CRM EDGE" parallel="methods">
-        <parameter name="browser" value="edge"></parameter>
+        <parameter name="browser" value="edge"/>
         <classes>
             <class name="com.anhtester.Bai26_ParallelExecutionPOM.testcases.LoginTest">
                 <methods>
@@ -22,7 +22,7 @@
         </classes>
     </test>
     <test name="Login Test CRM FIREFOX" parallel="methods">
-        <parameter name="browser" value="firefox"></parameter>
+        <parameter name="browser" value="firefox"/>
         <classes>
             <class name="com.anhtester.Bai26_ParallelExecutionPOM.testcases.LoginTest">
                 <methods>

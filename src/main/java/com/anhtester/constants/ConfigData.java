@@ -11,7 +11,7 @@ public class ConfigData {
         PropertiesHelper.loadAllFiles();
     }
 
-    public static String URL = PropertiesHelper.getValue("url");
-    public static String EMAIL = PropertiesHelper.getValue("email");
-    public static String PASSWORD = PropertiesHelper.getValue("password");
+    public static String URL = PropertiesHelper.getValue("URL");
+    public static String EMAIL = PropertiesHelper.getValue("EMAIL");
+    public static String PASSWORD = PropertiesHelper.getValue("PASSWORD");
 }
